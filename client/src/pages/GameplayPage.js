@@ -1,5 +1,8 @@
 import React, { useState, useEffect, Component } from 'react'
-import {socket} from '../socketInstance'
+import {socket} from '../socketInstance';
+
+import EasyTimer from "easytimer"
+
 // const styles = {
 // 	playerContainer: {
 // 		display: 'flex', 
@@ -11,9 +14,12 @@ export default class GameplayPage extends Component{
 	constructor(){
 		super()
 		this.state = {
-			isChosen: -1
+			isChosen: -1,
+			timer: new EasyTimer(),
+			timeValues: ""
 		}
 		this.choiceHandler = this.choiceHandler.bind(this)
+		this.tick = this.tick.bind(this)
 	}
 
 	componentDidMount(){
@@ -38,8 +44,22 @@ export default class GameplayPage extends Component{
 	// 		document.getElementById("counter")
 	// 	)
 	// }
-
 	
+	componentDidMount()
+	{
+		let { timer } = this.state;
+		timer.start({countdown: true, startValues: {seconds: 10}});
+		timer.addEventListener('secondsUpdated', this.tick)
+		timer.addEventListener('targetAchieved', () => {this.choiceHandler(1)})
+	}
+
+	tick(e) {
+		let { timer } = this.state;
+		const timeValues = timer.getTimeValues().toString();
+		console.log("Time Values: ", timeValues)
+		this.setState({ timeValues: timeValues });
+}
+
 	choiceHandler(value){
 		// const socket = JSON.parse(localStorage.getItem("socket"))
 		// console.log(localStorage.getItem("socket"))
@@ -77,7 +97,7 @@ export default class GameplayPage extends Component{
 					{/* Ti so */}
 					
 					{/* Gio */}
-					<span id="counter"></span>
+					<span>{this.state.timeValues}</span>
 				</div>
 			</div>
 		)

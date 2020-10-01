@@ -12,7 +12,6 @@ const FinalResultPage = (props) => {
 			else if (x === 3) return ("Keo")
 		}
 
-		
 		return(
         <div style={{alignContent: 'center', alignItems:'center'}}>
 						<div>
