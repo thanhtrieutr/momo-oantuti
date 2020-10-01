@@ -38,6 +38,7 @@ export default class GameplayPage extends Component{
 	// 		document.getElementById("counter")
 	// 	)
 	// }
+
 	
 	choiceHandler(value){
 		// const socket = JSON.parse(localStorage.getItem("socket"))
@@ -50,8 +51,11 @@ export default class GameplayPage extends Component{
 			action: value
 		}
 		socket.emit('ra_nuoc_di', playerMessage)
-		socket.on("round_result", (data) => {
-			console.log("Round result: ", data)
+		socket.on('round_result', (data) => {
+			console.log(data)
+			// { ti_so: { player_1: 2, player_2: 0 }}
+			localStorage.setItem("ti_so", JSON.stringify(data))
+			window.location.href = "http://localhost:3001/result"
 		})
 	}
 
@@ -71,7 +75,7 @@ export default class GameplayPage extends Component{
 				</div>
 				<div>
 					{/* Ti so */}
-					<span>2 - 1</span>
+					
 					{/* Gio */}
 					<span id="counter"></span>
 				</div>

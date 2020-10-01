@@ -5,6 +5,7 @@ import PairingPage from './pages/PairingPage'
 import GameplayPage from './pages/GameplayPage'
 import HomePage from './pages/HomePage'
 import ScoreboardPage from './pages/ScoreboardPage'
+import FinalResultPage from './pages/FinalResultPage'
 
 const routes = (
 	<Switch>
@@ -12,6 +13,7 @@ const routes = (
 		<Route exact path='/' component={HomePage}/>
 		<Route exact path='/chart' component={ScoreboardPage}/>
 		<Route exact path='/gameplay' component={GameplayPage}/>
+		<Route exact path='/result' component={FinalResultPage}/>
 	</Switch>
 )
 
