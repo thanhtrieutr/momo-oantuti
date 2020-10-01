@@ -22,29 +22,6 @@ export default class GameplayPage extends Component{
 		this.tick = this.tick.bind(this)
 	}
 
-	componentDidMount(){
-		// if (this.state.isChosen !== -1){
-		// 	const {player} = this.props
-		// 	const data = {
-		// 		playerId: player.id,
-		// 		choice: this.state.isChosen
-		// 	}
-		// 	const socket = socketIOClient(ENDPOINT)
-		// 	socket.emit('player-choice', JSON.stringify(data))
-		// 	socket.on('round-result', (data) => { 
-		// 		console.log("Round result: ", data)
-		// 	})
-		// }
-		// this.renderCounter()
-	}
-
-	// renderCounter(){
-	// 	ReactDOM.render(
-	// 		<Countdown date={Date.now() + 5000}/>,
-	// 		document.getElementById("counter")
-	// 	)
-	// }
-	
 	componentDidMount()
 	{
 		let { timer } = this.state;
@@ -58,7 +35,7 @@ export default class GameplayPage extends Component{
 		const timeValues = timer.getTimeValues().toString();
 		console.log("Time Values: ", timeValues)
 		this.setState({ timeValues: timeValues });
-}
+	}
 
 	choiceHandler(value){
 		// const socket = JSON.parse(localStorage.getItem("socket"))
