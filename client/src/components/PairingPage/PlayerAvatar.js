@@ -22,10 +22,6 @@ export default class PlayerAvatar extends Component{
 		console.log("Player: ", player)
 		return(
 			<div>
-				{/* <img src={require(player.avatarUrl)} alt={"player-avatar"}/> */}
-				<div>
-					<Image src={require("../assets/default-avatar.png")}></Image>
-				</div>
 				<span>{player.name}</span>
 			</div>
 		)
