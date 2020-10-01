@@ -25,12 +25,17 @@ export default class HomePage extends Component{
     onClickStart = async (event)=>
     {
         const userinfo = (await axios.post("http://localhost:3000/signup", {name: this.state.name})).data;
-        console.log(userinfo);
+				// console.log(socket);
+				localStorage.setItem("UserInfo", JSON.stringify(userinfo))
+				// localStorage.setItem("socket", socket)
+
         socket.emit("play_request", userinfo);
         socket.on('match_found',(matchInfo)=>
         {
-            console.log("MatchInfo",matchInfo);
-        });
+					console.log("MatchInfo",matchInfo);
+					localStorage.setItem("MatchInfo", JSON.stringify(matchInfo))
+					window.location.href = "http://localhost:3001/gameplay"
+				});
     }
     render () {
         return(

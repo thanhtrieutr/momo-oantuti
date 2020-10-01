@@ -1,9 +1,5 @@
 import React, { useState, useEffect, Component } from 'react'
-import { Button } from 'react-bootstrap'
-import socketIOClient from 'socket.io-client';
-import ReactDOM from 'react-dom'
-import Countdown from 'react-countdown'
-
+import {socket} from '../socketInstance'
 // const styles = {
 // 	playerContainer: {
 // 		display: 'flex', 
@@ -17,7 +13,7 @@ export default class GameplayPage extends Component{
 		this.state = {
 			isChosen: -1
 		}
-		this.choiceHanlder = this.choiceHanlder.bind(this)
+		this.choiceHandler = this.choiceHandler.bind(this)
 	}
 
 	componentDidMount(){
@@ -43,26 +39,34 @@ export default class GameplayPage extends Component{
 	// 	)
 	// }
 	
-	choiceHanlder(index){
-		// this.setState({
-		// 	isChosen: index
-		// })
-		console.log("Choose: ", index)
+	choiceHandler(value){
+		// const socket = JSON.parse(localStorage.getItem("socket"))
+		// console.log(localStorage.getItem("socket"))
+
+		console.log(localStorage.getItem("UserInfo"))
+		const playerMessage = {
+			playerId: JSON.parse(localStorage.getItem("UserInfo")).idUser,
+			action: value
+		}
+		socket.emit('ra-nuoc-di', playerMessage)
+		socket.on("round_result", (data) => {
+			console.log("Round result: ", data)
+		})
 	}
 
 	render() { 
 		return(
 			<div>
 				<div>
-					<Button onClick={this.choiceHanlder(0)}>
+					<button onClick={() => this.choiceHandler(3)}>
 						<span>Keo</span>
-					</Button>
-					<Button onClick={this.choiceHanlder(1)}>
+					</button>
+					<button onClick={() => this.choiceHandler(2)}>
 						<span>Bua</span>
-					</Button>
-					<Button onClick={this.choiceHanlder(2)}>
+					</button>
+					<button onClick={() => this.choiceHandler(1)}>
 						<span>Bao</span>
-					</Button>
+					</button>
 				</div>
 				<div>
 					{/* Ti so */}
