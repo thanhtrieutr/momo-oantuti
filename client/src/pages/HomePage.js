@@ -41,7 +41,7 @@ export default class HomePage extends Component{
             <p>Turns left: 20</p>
             
             <div>
-                <a href="">Chart</a>
+                <a href="/chart">Chart</a>
             </div>
         </div>
     )}

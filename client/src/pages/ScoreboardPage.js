@@ -86,7 +86,7 @@ const ScoreboardPage = (props) => {
             })}
           </tbody>
         </table>
-        <a href="">Home</a> 
+        <a href="/">Home</a> 
         </div>
       )
 }

@@ -4,8 +4,8 @@ import { BrowserRouter as Router} from 'react-router-dom'
 
 import routes from './routes'
 
-import HomePage from './HomePage'
-import ScoreboardPage from './ScoreboardPage'
+import HomePage from './pages/HomePage'
+import ScoreboardPage from './pages/ScoreboardPage'
 
 function App() {
   return (
