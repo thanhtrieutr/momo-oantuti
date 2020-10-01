@@ -48,7 +48,7 @@ const FinalResultPage = (props) => {
 							null
 						)}
 						{numTurn === 3 ? (   
-							<a href="">Home</a>
+							<a href="http://localhost:3001/">Home</a>
 						) : (
 							<button onClick={() => {window.location.href="http://localhost:3001/gameplay"}}>Back</button>
 						)}
