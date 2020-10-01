@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
 import {socket} from '../socketInstance'
 import axios from 'axios'
+import { event } from 'jquery';
 
 export default class HomePage extends Component{
     state = {
@@ -18,12 +19,18 @@ export default class HomePage extends Component{
             this.setState({showInput:false})
             this.setState({showStart:true})
             // send id request
-						// console.log(this.refs.name.value)
-						console.log(this.state.name)
-						const userinfo = await (await axios.post("http://localhost:3000/signup", {name: this.state.name})).data;
-						console.log(userinfo)
-						socket.emit("play_request", userinfo)
+			// console.log(this.refs.name.value)
         }
+    }
+    onClickStart = async (event)=>
+    {
+        const userinfo = (await axios.post("http://localhost:3000/signup", {name: this.state.name})).data;
+        console.log(userinfo);
+        socket.emit("play_request", userinfo);
+        socket.on('match_found',(matchInfo)=>
+        {
+            console.log("MatchInfo",matchInfo);
+        });
     }
     render () {
         return(
@@ -37,7 +44,7 @@ export default class HomePage extends Component{
             </div>
             : null}
             { this.state.showStart ? 
-            <button>
+            <button onClick={this.onClickStart}>
             Start
             </button>
             : null}
