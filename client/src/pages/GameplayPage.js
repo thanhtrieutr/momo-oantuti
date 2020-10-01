@@ -45,10 +45,11 @@ export default class GameplayPage extends Component{
 
 		console.log(localStorage.getItem("UserInfo"))
 		const playerMessage = {
+			roomId: JSON.parse(localStorage.getItem("MatchInfo")).id,
 			playerId: JSON.parse(localStorage.getItem("UserInfo")).idUser,
 			action: value
 		}
-		socket.emit('ra-nuoc-di', playerMessage)
+		socket.emit('ra_nuoc_di', playerMessage)
 		socket.on("round_result", (data) => {
 			console.log("Round result: ", data)
 		})
