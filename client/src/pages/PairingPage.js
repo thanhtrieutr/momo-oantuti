@@ -24,7 +24,12 @@ export default class PairingPage extends Component{
 	}
 
 	handleReady() { 
-		alert("You are ready")
+		// const { userId } = this.props
+		// socket.emit('request-play', userId)
+		// socket.on('request-match', (data) => { 
+		// 	console.log("Request match")
+		// 	window.location.href = "/gameplay"
+		// })	
 	}
 
 	render() { 

@@ -3,8 +3,6 @@ import { Button } from 'react-bootstrap'
 import socketIOClient from 'socket.io-client';
 import ReactDOM from 'react-dom'
 import Countdown from 'react-countdown'
-// import ENDPOINT = process.env.ENDPOINT
-
 
 // const styles = {
 // 	playerContainer: {

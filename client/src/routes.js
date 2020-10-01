@@ -11,7 +11,6 @@ const routes = (
 		<Route exact path='/pairing' component={PairingPage}/>
 		<Route exact path='/' component={HomePage}/>
 		<Route exact path='/chart' component={ScoreboardPage}/>
-		
 		<Route exact path='/gameplay' component={GameplayPage}/>
 	</Switch>
 )
