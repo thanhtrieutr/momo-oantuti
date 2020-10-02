@@ -1,48 +1,70 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { useTable } from 'react-table'
+import axios from 'axios'
 
 
-const ScoreboardPage = (props) => {
-    const data = React.useMemo(
-        () => [
-          {
-            name: 'Hello',
-            score: '23',
-          },
-          {
-            name: 'react-table',
-            score: '3',
-          }
-        ],
-        []
-      )
-    
-      const columns = React.useMemo(
-        () => [
-          {
-            Header: 'Name',
-            accessor: 'name', // accessor is the "key" in the data
-          },
-          {
-            Header: 'Score',
-            accessor: 'score',
-          },
-        ],
-        []
-      )
-    
-      const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
-      } = useTable({ columns, data })
-    
+export default class ScoreboardPage extends Component{
+	constructor(){
+		super()
+		this.state = {
+			data: []
+		}
+	}
+	
+	async componentDidMount() {
+		const response = await axios.get(`http://localhost:3000/api/top100`);
+		const data = response.data
+		if (response.status === 200 && data) {
+			await this.setState({
+				data: data			
+			})
+		}
+	}
+		
+		render(){
+			// const data = this.state.data
+			// const columns = [
+			// 		{
+			// 			Header: 'Name',
+			// 			accessor: 'name', // accessor is the "key" in the data
+			// 		},
+			// 		{
+			// 			Header: 'Score',
+			// 			accessor: 'point',
+			// 		},
+			// 	]
+			// const {
+      //   getTableProps,
+      //   getTableBodyProps,
+      //   headerGroups,
+      //   rows,
+      //   prepareRow,
+      // } = useTable({ columns, data })
       return (
         <div>
-            <h1>TOP100</h1>
-            <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+            <h1>TOP 100 PLAYERS</h1>
+						<table className="table">
+
+						
+							<thead>
+								<th scope="col">#</th>
+								<th scope="col">Name</th>
+								<th scope="col">Score</th>
+							</thead>
+							<tbody>
+
+							{this.state.data.map((row,index)=>
+							(<tr>
+								<th>{index + 1}</th>
+								<td>{row.name}</td>
+								<td>{row.point}</td>
+
+							</tr>))}
+								</tbody>
+						</table>
+
+
+            {/* <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
           <thead>
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -85,10 +107,10 @@ const ScoreboardPage = (props) => {
               )
             })}
           </tbody>
-        </table>
+        </table> */}
         <a href="/">Home</a> 
         </div>
       )
+		}
 }
 
-export default ScoreboardPage;

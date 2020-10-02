@@ -60,13 +60,13 @@ export default class GameplayPage extends Component{
 		return(
 			<div>
 				<div>
-					<button onClick={() => this.choiceHandler(3)}>
+					<button className="btn btn-success" onClick={() => this.choiceHandler(3)}>
 						<span>Keo</span>
 					</button>
-					<button onClick={() => this.choiceHandler(2)}>
+					<button className="btn btn-success" onClick={() => this.choiceHandler(2)}>
 						<span>Bua</span>
 					</button>
-					<button onClick={() => this.choiceHandler(1)}>
+					<button className="btn btn-success" onClick={() => this.choiceHandler(1)}>
 						<span>Bao</span>
 					</button>
 				</div>
@@ -74,7 +74,7 @@ export default class GameplayPage extends Component{
 					{/* Ti so */}
 					
 					{/* Gio */}
-					<span>{this.state.timeValues}</span>
+					<span>Time left: {this.state.timeValues}</span>
 				</div>
 			</div>
 		)

@@ -42,35 +42,42 @@ export default class FinalResultPage extends Component{
 			const matchInfo  = JSON.parse(localStorage.getItem("MatchInfo"))
 			return(
         <div style={{alignContent: 'center', alignItems:'center'}}>
-						<div>
+						<h4>
+							PLAYER 1 - PLAYER 2
+						</h4>
+
+						{userInfo.idUser === matchInfo.playerID_1.idUser ? (
+							<h3>
+								<span className="text-primary" style={{fontWeight: 'bold'}}>{matchInfo.playerID_1.name}</span>
+								- 
+								<span className="text-secondary">{matchInfo.playerID_2.name}</span>
+						</h3>
+						) :
+						(
+						<h3>
+							<span className="text-secondary" >{matchInfo.playerID_1.name}</span>
+							- 
+							<span className="text-primary" style={{fontWeight: 'bold'}}>{matchInfo.playerID_2.name}</span>
+						</h3>
+						)}
+						<h5>
 							<span>{this.getLabel(player1_action)}</span>
 							- 
 							<span>{this.getLabel(player2_action)}</span>
-						</div>
-						{userInfo.idUser === matchInfo.playerID_1.idUser ? (
-							<div>
-								<span style={{fontWeight: 'bold'}}>{matchInfo.playerID_1.name}</span>
-								- 
-								<span>{matchInfo.playerID_2.name}</span>
-						</div>
-						) :
-						(
-						<div>
-							<span>{matchInfo.playerID_1.name}</span>
-							- 
-							<span style={{fontWeight: 'bold'}}>{matchInfo.playerID_2.name}</span>
-						</div>
-						)}
-						<div>
+						</h5>
+						
+						<h2>
 							<span>{point[matchInfo.playerID_1.idUser] || 0}</span>
 							<span> - </span>
 							<span>{point[matchInfo.playerID_2.idUser] || 0}</span>
-						</div>
+						</h2>
 						{numTurn === 3 && winner!==0 ? 
 						(
-							<div>
+							<h3>
+							winner: <span className="text-danger">
 								{winner === 1 ? matchInfo.playerID_1.name : matchInfo.playerID_2.name}
-							</div>
+								</span>	
+							</h3>
 						) : (
 							null
 						)}

@@ -5,12 +5,16 @@ import axios from 'axios'
 import { event } from 'jquery';
 
 export default class HomePage extends Component{
-    state = {
-        showStart:false,
-        showInput:true,
-        showResults:false,
-        name:''
+	constructor(){
+		super()
+		this.state = {
+			showStart:false,
+			showInput:true,
+			showResults:false,
+			name:''
 		}
+	}
+
 		async componentWillMount() { 
 			if (localStorage.getItem("UserInfo")){
 				const userId = JSON.parse(localStorage.getItem("UserInfo")).idUser;
@@ -50,6 +54,9 @@ export default class HomePage extends Component{
 
         // localStorage.setItem("socket", socket)
 
+
+				this.refs.start_btn.setAttribute("disabled", "disabled");
+
         socket.emit("play_request", userinfo);
         socket.on('match_found',(matchInfo)=>
         {
@@ -70,22 +77,24 @@ export default class HomePage extends Component{
             </label>
             </div>
             : <div>
-								<p>{this.state.name || this.state.data.name}</p>
+								<h3>Your name: {this.state.name || this.state.data.name}</h3>
 							</div>}
             { this.state.showStart && ((this.state.data && this.state.data.numTurn !== 0)|| !this.state.data) ? 
-            <button onClick={this.onClickStart}>
+            <button ref="start_btn" onClick={this.onClickStart} className="btn btn-primary">
             Start
             </button>
             : null}
-            <p>Score: {
+            <p>Score: <strong>
+							{
 								this.state && this.state.data && this.state.data.point || 0
-							}</p>
-						<p>Turns left:
-							{this.state && this.state.data && this.state.data.numTurn || 20}
+							}
+							</strong> 
+							</p>
+						<p>Turns left: {this.state && this.state.data && this.state.data.numTurn || 20}
 						</p>
             
             <div>
-                <a href="/chart">Chart</a>
+                <a href="/chart">Scoreboard</a>
             </div>
         </div>
     )}

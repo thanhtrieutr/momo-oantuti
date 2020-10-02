@@ -12,9 +12,11 @@ const ENDPOINT = `ws://127.0.0.1:3030`
 function App() {
   return (
     <div className="App">
+			<div className="container">
       <Router>
 				{routes}
 			</Router>
+			</div>
     </div>
   );
 }
