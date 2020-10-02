@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import EasyTimer from "easytimer"
 
+const buaImage = require('../assets/Bua.png')
+const keoImage = require('../assets/KEo.png')
+const baoImage = require('../assets/Bao.png')
+
 
 export default class FinalResultPage extends Component{
 		constructor(){
@@ -30,9 +34,9 @@ export default class FinalResultPage extends Component{
 		}
 
 		getLabel = (x) => {
-			if (x === 1) return("Bao")
-			else if (x === 2) return ("Bua")
-			else if (x === 3) return ("Keo")
+			if (x === 1) return(baoImage)
+			else if (x === 2) return (buaImage)
+			else if (x === 3) return (keoImage)
 		}
 
 		render (){
@@ -61,9 +65,12 @@ export default class FinalResultPage extends Component{
 						</h3>
 						)}
 						<h5>
-							<span>{this.getLabel(player1_action)}</span>
+							<img className="img-fluid mr-5" src={this.getLabel(player1_action)}/>
+							<img className="img-fluid" src={this.getLabel(player2_action)}/>
+
+							{/* <span>{this.getLabel(player1_action)}</span>
 							- 
-							<span>{this.getLabel(player2_action)}</span>
+							<span>{this.getLabel(player2_action)}</span> */}
 						</h5>
 						
 						<h2>
@@ -84,7 +91,7 @@ export default class FinalResultPage extends Component{
 						{numTurn === 3 ? (   
 							<a href="http://localhost:3001/">Home</a>
 						) : (
-							<div>{this.state.timeValues}</div>
+							<h1>{this.state.timeValues}</h1>
 							// <button onClick={() => {window.location.href="http://localhost:3001/gameplay"}}>Back</button>
 						)}
         </div>

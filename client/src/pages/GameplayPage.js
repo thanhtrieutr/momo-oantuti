@@ -3,6 +3,12 @@ import {socket} from '../socketInstance';
 
 import EasyTimer from "easytimer"
 
+const buaImage = require('../assets/Bua.png')
+const keoImage = require('../assets/KEo.png')
+const baoImage = require('../assets/Bao.png')
+
+
+
 // const styles = {
 // 	playerContainer: {
 // 		display: 'flex', 
@@ -60,21 +66,21 @@ export default class GameplayPage extends Component{
 		return(
 			<div>
 				<div>
-					<button className="btn btn-success btn-lg ml-2" onClick={() => this.choiceHandler(3)}>
-						<span>Keo</span>
+					<button className="btn btn-lg ml-2" onClick={() => this.choiceHandler(3)}>
+						<img src={keoImage}/>
 					</button>
-					<button className="btn btn-success btn-lg ml-2" onClick={() => this.choiceHandler(2)}>
-						<span>Bua</span>
+					<button className="btn btn-lg ml-2" onClick={() => this.choiceHandler(2)}>
+						<img src={buaImage}/>
 					</button>
-					<button className="btn btn-success btn-lg ml-2" onClick={() => this.choiceHandler(1)}>
-						<span>Bao</span>
+					<button className="btn btn-lg ml-2" onClick={() => this.choiceHandler(1)}>
+						<img src={baoImage}/>
 					</button>
 				</div>
 				<div>
 					{/* Ti so */}
 					
 					{/* Gio */}
-					<span>Time left: {this.state.timeValues}</span>
+					<h1>Time left: {this.state.timeValues}</h1>
 				</div>
 			</div>
 		)
