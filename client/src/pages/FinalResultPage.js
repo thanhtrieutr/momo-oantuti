@@ -15,7 +15,7 @@ export default class FinalResultPage extends Component{
 		componentDidMount()
 		{
 			let { timer } = this.state;
-			timer.start({countdown: true, startValues: {seconds: 10}});
+			timer.start({countdown: true, startValues: {seconds: 5}});
 			if (JSON.parse(localStorage.getItem("ti_so")).roundResult.numTurn !== 3){
 				timer.addEventListener('secondsUpdated', this.tick)
 				timer.addEventListener('targetAchieved', () => {window.location.href="http://localhost:3001/gameplay"})
@@ -74,10 +74,10 @@ export default class FinalResultPage extends Component{
 						{numTurn === 3 && winner!==0 ? 
 						(
 							<h3>
-							winner: <span className="text-danger">
-								{winner === 1 ? matchInfo.playerID_1.name : matchInfo.playerID_2.name}
+							<span className="text-danger">
+								{point[matchInfo.playerID_1.idUser] == point[matchInfo.playerID_2.idUser] ? 'DRAW' : (point[matchInfo.playerID_1.idUser] > point[matchInfo.playerID_2.idUser] ? <span>winner: {matchInfo.playerID_1.name}</span> : <span>winner: {matchInfo.playerID_2.name}</span>)}
 								</span>	
-							</h3>
+							</h3> 
 						) : (
 							null
 						)}
